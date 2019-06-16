@@ -52,15 +52,33 @@ class SetDevelopmentMode extends Command
     {
         $needToDisableDevelopmentMode = $this->disableDevelopmentModeInputFormatter($input->getOption('disable'));
         if ($needToDisableDevelopmentMode) {
-            $this->disableDevelopmentMode($input, $output);
+            $this->disableDevelopmentMode($output);
             return 0;
         }
-        $this->enableDevelopmentMode($input, $output);
+        $this->enableDevelopmentMode($output);
 
         return 0;
     }
 
-    private function enableDevelopmentMode(InputInterface $input, OutputInterface $output): void
+    private function disableDevelopmentModeInputFormatter($getOption): bool
+    {
+        if (in_array($getOption, self::TRUE_OPTIONS, true)) {
+            return true;
+        }
+
+        if (in_array($getOption, self::FALSE_OPTIONS, true)) {
+            return false;
+        }
+
+        throw new \InvalidArgumentException(sprintf(
+            'Invalid option %s given, dissable option value should be one of: %s, %s',
+            (string)$getOption,
+            implode(',', self::TRUE_OPTIONS),
+            implode(',', self::FALSE_OPTIONS)
+        ));
+    }
+
+    private function enableDevelopmentMode(OutputInterface $output): void
     {
         $finder = new Finder();
         $finder->files()->in($this->config['config_dir'])->name('*.dist');
@@ -89,25 +107,7 @@ class SetDevelopmentMode extends Command
         $command->run(new ArrayInput($arguments), $output);
     }
 
-    private function disableDevelopmentModeInputFormatter($getOption): bool
-    {
-        if (in_array($getOption, self::TRUE_OPTIONS, true)) {
-            return true;
-        }
-
-        if (in_array($getOption, self::FALSE_OPTIONS, true)) {
-            return false;
-        }
-
-        throw new \InvalidArgumentException(sprintf(
-            'Invalid option %s given, dissable option value should be one of: %s, %s',
-            (string)$getOption,
-            implode(',', self::TRUE_OPTIONS),
-            implode(',', self::FALSE_OPTIONS)
-        ));
-    }
-
-    private function disableDevelopmentMode(InputInterface $input, OutputInterface $output): void
+    private function disableDevelopmentMode(OutputInterface $output): void
     {
         $finder = new Finder();
         $finder->files()->in($this->config['config_dir'])->name('*.dev.{yaml,xml,php}');
