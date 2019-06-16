@@ -8,6 +8,8 @@ use Antidot\DevTools\Application\Command\ClearConfigCache;
 use Antidot\DevTools\Application\Command\SetDevelopmentMode;
 use Antidot\DevTools\Application\Command\ShowContainer;
 use Antidot\DevTools\Container\ClearConfigCacheCommandFactory;
+use Antidot\DevTools\Application\Command\MakeConsoleCommand;
+use Antidot\DevTools\Container\MakeConsoleCommandCommandFactory;
 use Antidot\DevTools\Container\SetDevelopmentModeCommandFactory;
 use Antidot\DevTools\Container\ShowContainerCommandFactory;
 
@@ -19,12 +21,14 @@ class ConfigProvider
             'console' => [
                 'commands' => [
                     ClearConfigCache::NAME => ClearConfigCache::class,
+                    MakeConsoleCommand::NAME => MakeConsoleCommand::class,
                     ShowContainer::NAME => ShowContainer::class,
                     SetDevelopmentMode::NAME => SetDevelopmentMode::class,
                 ],
                 'dependencies' => [
                     'factories' => [
                         ClearConfigCache::class => ClearConfigCacheCommandFactory::class,
+                        MakeConsoleCommand::class => MakeConsoleCommandCommandFactory::class,
                         ShowContainer::class => ShowContainerCommandFactory::class,
                         SetDevelopmentMode::class => SetDevelopmentModeCommandFactory::class,
                     ],
