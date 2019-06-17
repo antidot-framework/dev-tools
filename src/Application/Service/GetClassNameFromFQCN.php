@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Antidot\DevTools\Application\Service;
 
+use function is_bool;
+use function strrchr;
+use function substr;
+
 class GetClassNameFromFQCN
 {
     public function __invoke(string $fqcn): string

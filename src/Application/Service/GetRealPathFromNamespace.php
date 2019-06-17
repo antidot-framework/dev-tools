@@ -7,6 +7,12 @@ namespace Antidot\DevTools\Application\Service;
 use Composer\Autoload\ClassLoader;
 use InvalidArgumentException;
 
+use function array_key_exists;
+use function is_array;
+use function is_string;
+use function spl_autoload_functions;
+use function sprintf;
+
 class GetRealPathFromNamespace
 {
     /** @var GetClassNameFromFQCN */
