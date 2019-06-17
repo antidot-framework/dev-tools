@@ -110,7 +110,7 @@ services:
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
         /** @var string $fqcn */
         $fqcn = $input->getArgument('fqcn');

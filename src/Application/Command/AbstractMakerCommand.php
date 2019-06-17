@@ -14,6 +14,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Throwable;
 
+use function sprintf;
+
 abstract class AbstractMakerCommand extends Command
 {
     public const NAME = self::NAME;
@@ -58,7 +60,7 @@ abstract class AbstractMakerCommand extends Command
     }
 
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
         /** @var string $fqcn */
         $fqcn = $input->getArgument('fqcn');
