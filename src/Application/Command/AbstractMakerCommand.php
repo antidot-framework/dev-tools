@@ -18,10 +18,10 @@ use function sprintf;
 
 abstract class AbstractMakerCommand extends Command
 {
-    public const NAME = self::NAME;
-    protected const FQCN_ARGUMENT_DESCRIPTION = self::FQCN_ARGUMENT_DESCRIPTION;
-    protected const TEMPLATE = self::TEMPLATE;
-    protected const SUCCESS_HELP_TEMPLATE = self::SUCCESS_HELP_TEMPLATE;
+    public const NAME = '';
+    protected const FQCN_ARGUMENT_DESCRIPTION = '';
+    protected const TEMPLATE = '';
+    protected const SUCCESS_HELP_TEMPLATE = '';
     /** @var GetClassNameFromFQCN */
     protected $getClassNameFromFQCN;
     /** @var GetNamespaceFromFQCN */
@@ -40,6 +40,7 @@ abstract class AbstractMakerCommand extends Command
         CreateClassFile $createClassFile,
         array $config
     ) {
+        $this->assertValidConstants();
         $this->getClassNameFromFQCN = $getClassNameFromFQCN;
         $this->getNamespaceFromFQCN = $getNamespaceFromFQCN;
         $this->getRealPathFromNamespace = $getRealPathFromNamespace;
@@ -93,5 +94,21 @@ abstract class AbstractMakerCommand extends Command
             $fqcn,
             $className
         ));
+
+        return 0;
+    }
+
+    private function assertValidConstants(): void
+    {
+        if (empty(static::TEMPLATE)
+            || empty(static::SUCCESS_HELP_TEMPLATE)
+            || empty(static::FQCN_ARGUMENT_DESCRIPTION)
+            || empty(static::NAME)
+        ) {
+            throw new \RuntimeException(
+                'Constant TEMPLATE, SUCCESS_HELP_TEMPLATE, FQCN_ARGUMENT_DESCRIPTION and NAME'
+                . ' must have to be defined in your maker command class.'
+            );
+        }
     }
 }
