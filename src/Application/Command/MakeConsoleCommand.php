@@ -97,11 +97,11 @@ services:
     protected function configure(): void
     {
         $this
-            ->setName(self::NAME)
+            ->setName(static::NAME)
             ->addArgument(
                 'fqcn',
                 InputArgument::REQUIRED,
-                self::FQCN_ARGUMENT_DESCRIPTION
+                static::FQCN_ARGUMENT_DESCRIPTION
             )
             ->addArgument(
                 'command-name',
@@ -140,10 +140,12 @@ services:
             $realFilePath
         ));
         $output->writeln(sprintf(
-            self::SUCCESS_HELP_TEMPLATE,
+            static::SUCCESS_HELP_TEMPLATE,
             $this->config['config_dir'],
             $fqcn,
             $commandName
         ));
+
+        return 0;
     }
 }

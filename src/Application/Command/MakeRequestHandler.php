@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Antidot\DevTools\Application\Command;
 
-class MakeMiddleware extends AbstractMakerCommand
+class MakeRequestHandler extends AbstractMakerCommand
 {
-    public const NAME = 'make:middleware';
-    protected const FQCN_ARGUMENT_DESCRIPTION = 'Add Full qualified class name for Middleware.';
+    public const NAME = 'make:request-handler';
+    protected const FQCN_ARGUMENT_DESCRIPTION = 'Add Full qualified class name for Request Handler.';
     protected const TEMPLATE = '<?php
 
 declare(strict_types=1);
@@ -16,21 +16,18 @@ namespace %s;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class %s implements MiddlewareInterface
+class %s implements RequestHandlerInterface
 {
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        // do middleware stuff here
-    
-        return $handler->handle($request);
+        // return ImplementationOfResponseInterface
     }
 }
 ';
     protected const SUCCESS_HELP_TEMPLATE = '<comment>
-To activate the newly created Middleware you must register it in the configuration. (This examples are valid for'
+To activate the newly created Request Handler you must register it in the configuration. (This examples are valid for'
     . ' Antidot Framework and Zend expressive Framework)
 
 PHP style config (Zend Expressive, Antidot Framework)
