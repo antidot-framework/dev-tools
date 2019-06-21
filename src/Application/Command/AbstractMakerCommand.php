@@ -12,6 +12,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\Question;
 use Throwable;
 
 use function sprintf;
@@ -22,6 +23,9 @@ abstract class AbstractMakerCommand extends Command
     protected const FQCN_ARGUMENT_DESCRIPTION = '';
     protected const TEMPLATE = '';
     protected const SUCCESS_HELP_TEMPLATE = '';
+    protected const QUESTION = '<fg=blue>Please enter the name of the class <info>[App\My\Class]</info>: </> ';
+    protected const DEFAULT_RESPONSE = 'App\My\NewClass';
+    protected const SUCCESS_MESSAGE = '<info>Class %s successfully created in file %s</info>';
     /** @var GetClassNameFromFQCN */
     protected $getClassNameFromFQCN;
     /** @var GetNamespaceFromFQCN */
@@ -55,7 +59,7 @@ abstract class AbstractMakerCommand extends Command
             ->setName(static::NAME)
             ->addArgument(
                 'fqcn',
-                InputArgument::REQUIRED,
+                InputArgument::OPTIONAL,
                 static::FQCN_ARGUMENT_DESCRIPTION
             );
     }
@@ -64,7 +68,7 @@ abstract class AbstractMakerCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
         /** @var string $fqcn */
-        $fqcn = $input->getArgument('fqcn');
+        $fqcn = $this->getFQCN($input, $output);
         $getClassNameFromFQCN = $this->getClassNameFromFQCN;
         $getNamespaceFromFQCN = $this->getNamespaceFromFQCN;
         $getRealPathFromNamespace = $this->getRealPathFromNamespace;
@@ -84,7 +88,7 @@ abstract class AbstractMakerCommand extends Command
         }
 
         $output->writeln(sprintf(
-            '<info>Factory %s successfully created in file %s</info>',
+            static::SUCCESS_MESSAGE,
             $className,
             $realFilePath
         ));
@@ -96,6 +100,21 @@ abstract class AbstractMakerCommand extends Command
         ));
 
         return 0;
+    }
+
+    protected function getFQCN(InputInterface $input, OutputInterface $output): string
+    {
+        $fqcn = $input->getArgument('fqcn');
+        if (null === $fqcn) {
+            $questionHelper = $this->getHelper('question');
+            $question = new Question(
+                static::QUESTION,
+                static::DEFAULT_RESPONSE
+            );
+            $fqcn = $questionHelper->ask($input, $output, $question);
+        }
+
+        return $fqcn;
     }
 
     private function assertValidConstants(): void
