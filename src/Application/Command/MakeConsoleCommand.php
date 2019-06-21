@@ -7,6 +7,7 @@ namespace Antidot\DevTools\Application\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\Question;
 use Throwable;
 
 use function sprintf;
@@ -15,6 +16,9 @@ class MakeConsoleCommand extends AbstractMakerCommand
 {
     public const NAME = 'make:console-command';
     protected const FQCN_ARGUMENT_DESCRIPTION = 'Add Console Command Full qualified class name';
+    protected const QUESTION =
+        '<fg=blue>Please enter the name of the Console Command class <info>[App\Console\MyCommand]</info>: </> ';
+    protected const DEFAULT_RESPONSE = 'App\Console\MyCommand';
     protected const TEMPLATE = '<?php
 
 declare(strict_types=1);
@@ -100,12 +104,12 @@ services:
             ->setName(static::NAME)
             ->addArgument(
                 'fqcn',
-                InputArgument::REQUIRED,
+                InputArgument::OPTIONAL,
                 static::FQCN_ARGUMENT_DESCRIPTION
             )
             ->addArgument(
                 'command-name',
-                InputArgument::REQUIRED,
+                InputArgument::OPTIONAL,
                 'Add Console Command name'
             );
     }
@@ -113,9 +117,9 @@ services:
     protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
         /** @var string $fqcn */
-        $fqcn = $input->getArgument('fqcn');
+        $fqcn = $this->getFQCN($input, $output);
         /** @var string $commandName */
-        $commandName = $input->getArgument('command-name');
+        $commandName = $this->getCommandName($input, $output);
         $getClassNameFromFQCN = $this->getClassNameFromFQCN;
         $getNamespaceFromFQCN = $this->getNamespaceFromFQCN;
         $getRealPathFromNamespace = $this->getRealPathFromNamespace;
@@ -147,5 +151,21 @@ services:
         ));
 
         return 0;
+    }
+
+
+    protected function getCommandName(InputInterface $input, OutputInterface $output): string
+    {
+        $commandName = $input->getArgument('command-name');
+        if (null === $commandName) {
+            $questionHelper = $this->getHelper('question');
+            $question = new Question(
+                '<fg=blue>Please enter the name of the command <info>[app:my:command]</info>: </>',
+                'app:my:command'
+            );
+            $commandName = $questionHelper->ask($input, $output, $question);
+        }
+
+        return $commandName;
     }
 }

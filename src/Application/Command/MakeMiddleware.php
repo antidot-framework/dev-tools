@@ -8,6 +8,9 @@ class MakeMiddleware extends AbstractMakerCommand
 {
     public const NAME = 'make:middleware';
     protected const FQCN_ARGUMENT_DESCRIPTION = 'Add Full qualified class name for Middleware.';
+    protected const QUESTION =
+        '<fg=blue>Please enter the name of the PSR-15 Middleware class <info>[App\Http\MyMiddleware]</info>: </> ';
+    protected const DEFAULT_RESPONSE = 'App\Http\MyMiddleware';
     protected const TEMPLATE = '<?php
 
 declare(strict_types=1);

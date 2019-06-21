@@ -8,6 +8,9 @@ class MakeRequestHandler extends AbstractMakerCommand
 {
     public const NAME = 'make:request-handler';
     protected const FQCN_ARGUMENT_DESCRIPTION = 'Add Full qualified class name for Request Handler.';
+    protected const QUESTION =
+        '<fg=blue>Please enter the name of the PSR-7 Request Handler class <info>[App\Http\MyHandler]</info>: </>';
+    protected const DEFAULT_RESPONSE = 'App\Http\MyHandler';
     protected const TEMPLATE = '<?php
 
 declare(strict_types=1);
