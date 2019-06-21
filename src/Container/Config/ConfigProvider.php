@@ -7,6 +7,7 @@ namespace Antidot\DevTools\Container\Config;
 use Antidot\DevTools\Application\Command\ClearConfigCache;
 use Antidot\DevTools\Container\ClearConfigCacheCommandFactory;
 use Antidot\DevTools\Application\Command\MakeConsoleCommand;
+use Antidot\DevTools\Application\Command\MakeEvent;
 use Antidot\DevTools\Application\Command\MakeFactory;
 use Antidot\DevTools\Application\Command\MakeMiddleware;
 use Antidot\DevTools\Application\Command\MakeRequestHandler;
@@ -26,6 +27,7 @@ class ConfigProvider
                 'commands' => [
                     ClearConfigCache::NAME => ClearConfigCache::class,
                     MakeConsoleCommand::NAME => MakeConsoleCommand::class,
+                    MakeEvent::NAME => MakeEvent::class,
                     MakeFactory::NAME => MakeFactory::class,
                     MakeMiddleware::NAME => MakeMiddleware::class,
                     MakeRequestHandler::NAME => MakeRequestHandler::class,
@@ -36,6 +38,7 @@ class ConfigProvider
                     'factories' => [
                         ClearConfigCache::class => ClearConfigCacheCommandFactory::class,
                         MakeConsoleCommand::class => [MakerCommandFactory::class, MakeConsoleCommand::class],
+                        MakeEvent::class => [MakerCommandFactory::class, MakeEvent::class],
                         MakeFactory::class => [MakerCommandFactory::class, MakeFactory::class],
                         MakeMiddleware::class => [MakerCommandFactory::class, MakeMiddleware::class],
                         MakeRequestHandler::class => [MakerCommandFactory::class, MakeRequestHandler::class],
