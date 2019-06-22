@@ -7,6 +7,7 @@ namespace Antidot\DevTools\Container;
 use Antidot\DevTools\Application\Command\AbstractMakerCommand;
 use Antidot\DevTools\Application\Command\MakeConsoleCommand;
 use Antidot\DevTools\Application\Command\MakeEvent;
+use Antidot\DevTools\Application\Command\MakeEventListener;
 use Antidot\DevTools\Application\Command\MakeFactory;
 use Antidot\DevTools\Application\Command\MakeMiddleware;
 use Antidot\DevTools\Application\Command\MakeRequestHandler;
@@ -26,6 +27,7 @@ class MakerCommandFactory
     private const COMMANDS = [
         MakeConsoleCommand::class,
         MakeEvent::class,
+        MakeEventListener::class,
         MakeFactory::class,
         MakeRequestHandler::class,
         MakeMiddleware::class,

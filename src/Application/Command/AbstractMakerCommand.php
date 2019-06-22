@@ -20,6 +20,7 @@ use function sprintf;
 abstract class AbstractMakerCommand extends Command
 {
     public const NAME = '';
+    protected const COMMAND_DESCRIPTION = '';
     protected const FQCN_ARGUMENT_DESCRIPTION = '';
     protected const TEMPLATE = '';
     protected const SUCCESS_HELP_TEMPLATE = '';
@@ -57,6 +58,7 @@ abstract class AbstractMakerCommand extends Command
     {
         $this
             ->setName(static::NAME)
+            ->setDescription(static::COMMAND_DESCRIPTION)
             ->addArgument(
                 'fqcn',
                 InputArgument::OPTIONAL,
