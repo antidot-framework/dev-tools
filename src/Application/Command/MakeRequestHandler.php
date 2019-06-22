@@ -7,6 +7,7 @@ namespace Antidot\DevTools\Application\Command;
 class MakeRequestHandler extends AbstractMakerCommand
 {
     public const NAME = 'make:request-handler';
+    protected const COMMAND_DESCRIPTION = 'Creates a PSR-7 request handler class.';
     protected const FQCN_ARGUMENT_DESCRIPTION = 'Add Full qualified class name for Request Handler.';
     protected const QUESTION =
         '<fg=blue>Please enter the name of the PSR-7 Request Handler class <info>[App\Http\MyHandler]</info>: </>';

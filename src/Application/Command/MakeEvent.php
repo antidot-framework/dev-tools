@@ -7,6 +7,7 @@ namespace Antidot\DevTools\Application\Command;
 class MakeEvent extends AbstractMakerCommand
 {
     public const NAME = 'make:event';
+    protected const COMMAND_DESCRIPTION = 'Creates a PSR-16 event class.';
     protected const FQCN_ARGUMENT_DESCRIPTION = 'Add Full qualified class name for Event.';
     protected const QUESTION =
         '<fg=blue>Please enter the name of the Event class <info>[App\Event\SomethingOccurred]</info>: </>';

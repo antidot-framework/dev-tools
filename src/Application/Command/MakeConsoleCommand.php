@@ -15,6 +15,7 @@ use function sprintf;
 class MakeConsoleCommand extends AbstractMakerCommand
 {
     public const NAME = 'make:console-command';
+    protected const COMMAND_DESCRIPTION = 'Creates a console command class.';
     protected const FQCN_ARGUMENT_DESCRIPTION = 'Add Console Command Full qualified class name';
     protected const QUESTION =
         '<fg=blue>Please enter the name of the Console Command class <info>[App\Console\MyCommand]</info>: </> ';
@@ -100,13 +101,8 @@ services:
 
     protected function configure(): void
     {
+        parent::configure();
         $this
-            ->setName(static::NAME)
-            ->addArgument(
-                'fqcn',
-                InputArgument::OPTIONAL,
-                static::FQCN_ARGUMENT_DESCRIPTION
-            )
             ->addArgument(
                 'command-name',
                 InputArgument::OPTIONAL,

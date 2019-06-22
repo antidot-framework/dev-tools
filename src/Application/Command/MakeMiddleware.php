@@ -7,6 +7,7 @@ namespace Antidot\DevTools\Application\Command;
 class MakeMiddleware extends AbstractMakerCommand
 {
     public const NAME = 'make:middleware';
+    protected const COMMAND_DESCRIPTION = 'Creates a PSR-15 middleware class.';
     protected const FQCN_ARGUMENT_DESCRIPTION = 'Add Full qualified class name for Middleware.';
     protected const QUESTION =
         '<fg=blue>Please enter the name of the PSR-15 Middleware class <info>[App\Http\MyMiddleware]</info>: </> ';
