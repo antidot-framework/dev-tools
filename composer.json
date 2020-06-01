@@ -46,10 +46,5 @@
     },
     "config": {
         "sort-packages": true
-    },
-    "extra": {
-        "zf": {
-            "config-provider": "Antidot\\DevTools\\Container\\Config\\ConfigProvider"
-        }
     }
 }
