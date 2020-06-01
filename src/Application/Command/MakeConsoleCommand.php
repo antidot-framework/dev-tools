@@ -57,10 +57,8 @@ PHP style config (Zend Expressive, Antidot Framework)
 // %1$s/some-file.prod.php
 
 return [
-    \'dependencies\' => [
-        \'invokables\' => [
-            \'%2$s\' => \'%2$s\'
-        ]
+    \'services\' => [
+        \'%2$s\' => \'%2$s\'
     ],
     \'console\' => [
         \'commands\' => [
@@ -76,9 +74,8 @@ YAML style config (Zend Expressive, Antidot Framework)
 ======================================
 
 # %1$s/some-file.prod.yaml
-dependencies:
-  invokables:
-    %2$s: %2$s
+services:
+  %2$s: %2$s
 console:
     commands:
         \'%3$s\': %2$s

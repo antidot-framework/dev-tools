@@ -27,16 +27,11 @@ abstract class AbstractMakerCommand extends Command
     protected const QUESTION = '<fg=blue>Please enter the name of the class <info>[App\My\Class]</info>: </> ';
     protected const DEFAULT_RESPONSE = 'App\My\NewClass';
     protected const SUCCESS_MESSAGE = '<info>Class %s successfully created in file %s</info>';
-    /** @var GetClassNameFromFQCN */
-    protected $getClassNameFromFQCN;
-    /** @var GetNamespaceFromFQCN */
-    protected $getNamespaceFromFQCN;
-    /** @var GetRealPathFromNamespace */
-    protected $getRealPathFromNamespace;
-    /** @var CreateClassFile */
-    protected $createClassFile;
-    /** @var array */
-    protected $config;
+    protected GetClassNameFromFQCN $getClassNameFromFQCN;
+    protected GetNamespaceFromFQCN $getNamespaceFromFQCN;
+    protected GetRealPathFromNamespace $getRealPathFromNamespace;
+    protected CreateClassFile $createClassFile;
+    protected array $config;
 
     public function __construct(
         GetClassNameFromFQCN $getClassNameFromFQCN,

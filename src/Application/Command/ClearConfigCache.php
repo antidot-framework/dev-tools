@@ -11,7 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class ClearConfigCache extends Command
 {
     public const NAME = 'config:clear-cache';
-    private $config;
+    private array $config;
 
     public function __construct(array $config)
     {
@@ -25,7 +25,7 @@ class ClearConfigCache extends Command
             ->setDescription('Clear config cache files.');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
         foreach (['config_cache_path', 'cli_config_cache_path'] as $key) {
             if (! isset($this->config[$key])) {
@@ -54,5 +54,7 @@ class ClearConfigCache extends Command
                 $this->config[$key]
             ));
         }
+
+        return 0;
     }
 }

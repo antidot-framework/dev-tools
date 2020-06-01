@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class ShowContainer extends Command
 {
     public const NAME = 'config:show:container';
-    private $config;
+    private array $config;
 
     public function __construct(array $config)
     {
@@ -21,51 +21,42 @@ final class ShowContainer extends Command
         $this->config = $config;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName(self::NAME)
             ->setDescription('Show all available services inner container.');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
         $table = new Table($output);
 
         $table->setHeaders(['service', 'implementation']);
-        $table->addRow(['<info>Invokables</info>']);
+        $table->addRow(['<info>Services</info>']);
         $table->addRow(new TableSeparator());
-        $invokables = $this->config['dependencies']['invokables'] ?? [];
-        foreach ($invokables as $invokable => $instance) {
-            $table->addRow([$invokable, $instance]);
-        }
-        $table->addRow(new TableSeparator());
-        $table->addRow(['<info>Factories</info>']);
-        $table->addRow(new TableSeparator());
-        $factories = $this->config['dependencies']['factories'] ?? [];
-        foreach ($factories as $key => $factory) {
-            $table->addRow([$key, is_array($factory) ? $factory[0].'::'.$factory[1] : $factory]);
-        }
-        $table->addRow(new TableSeparator());
-        $table->addRow(['<info>Aliases</info>']);
-        $table->addRow(new TableSeparator());
-        $aliases = $this->config['dependencies']['aliases'] ?? [];
-        foreach ($aliases as $key => $alias) {
-            $table->addRow([$key, $alias]);
-        }
-        $table->addRow(new TableSeparator());
-        $table->addRow(['<info>Conditionals</info>']);
-        $table->addRow(new TableSeparator());
-        $conditionals = $this->config['dependencies']['conditionals'] ?? [];
-        foreach ($conditionals as $key => $conditional) {
-            $table->addRow([$key, $conditional['class']]);
-            foreach ($conditional['arguments'] as $index => $argument) {
+        $services = $this->config['services'] ?? [];
+        foreach ($services as $key => $service) {
+            if (is_string($service)) {
+                $table->addRow([$key, $service]);
+                continue;
+            }
+            $table->addRow([$key, $service['class']]);
+            foreach ($service['arguments'] ?? [] as $index => $argument) {
                 $table->addRow([
                     '',
                     ' - '.$index.'::'.(\is_string($argument) ? $argument : \gettype($argument)),
                 ]);
             }
         }
+        $table->addRow(new TableSeparator());
+        $table->addRow(['<info>Factories</info>']);
+        $table->addRow(new TableSeparator());
+        $factories = $this->config['factories'] ?? [];
+        foreach ($factories as $key => $factory) {
+            $table->addRow([$key, is_array($factory) ? $factory[0].'::'.$factory[1] : $factory]);
+        }
 
         $table->render();
+        return 0;
     }
 }

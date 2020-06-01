@@ -40,10 +40,8 @@ PHP style config (Zend Expressive, Antidot Framework)
 // %1$s/some-file.prod.php
 
 return [
-    \'dependencies\' => [
-        \'factories\' => [
-            \'YourFullQualifiedClassName\' => \'%2$s\'
-        ]
+    \'factories\' => [
+        \'YourFullQualifiedClassName\' => \'%2$s\'
     ],
 ];
 
@@ -54,9 +52,8 @@ YAML style config (Zend Expressive, Antidot Framework)
 ======================================
 
 # %1$s/some-file.prod.yaml
-dependencies:
-  factories:
-    YourFullQualifiedClassName: %2$s
+factories:
+  YourFullQualifiedClassName: %2$s
         
 ======================================
 

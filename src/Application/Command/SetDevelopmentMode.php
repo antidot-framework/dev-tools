@@ -27,7 +27,7 @@ class SetDevelopmentMode extends Command
         false,
         'false'
     ];
-    private $config;
+    private array $config;
 
     public function __construct(array $config)
     {
@@ -100,7 +100,11 @@ class SetDevelopmentMode extends Command
             ));
         }
 
-        $command = $this->getApplication()->find(ClearConfigCache::NAME);
+        $application = $this->getApplication();
+        if (null === $application) {
+            throw new \RuntimeException('Cli application should be initialized.');
+        }
+        $command = $application->find(ClearConfigCache::NAME);
         $arguments = [
             'command' => ClearConfigCache::NAME
         ];
