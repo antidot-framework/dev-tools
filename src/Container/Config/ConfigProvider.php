@@ -36,18 +36,16 @@ class ConfigProvider
                     ShowContainer::NAME => ShowContainer::class,
                     SetDevelopmentMode::NAME => SetDevelopmentMode::class,
                 ],
-                'dependencies' => [
-                    'factories' => [
-                        ClearConfigCache::class => ClearConfigCacheCommandFactory::class,
-                        MakeConsoleCommand::class => [MakerCommandFactory::class, MakeConsoleCommand::class],
-                        MakeEvent::class => [MakerCommandFactory::class, MakeEvent::class],
-                        MakeEventListener::class => [MakerCommandFactory::class, MakeEventListener::class],
-                        MakeFactory::class => [MakerCommandFactory::class, MakeFactory::class],
-                        MakeMiddleware::class => [MakerCommandFactory::class, MakeMiddleware::class],
-                        MakeRequestHandler::class => [MakerCommandFactory::class, MakeRequestHandler::class],
-                        ShowContainer::class => ShowContainerCommandFactory::class,
-                        SetDevelopmentMode::class => SetDevelopmentModeCommandFactory::class,
-                    ],
+                'factories' => [
+                    ClearConfigCache::class => ClearConfigCacheCommandFactory::class,
+                    MakeConsoleCommand::class => [MakerCommandFactory::class, MakeConsoleCommand::class],
+                    MakeEvent::class => [MakerCommandFactory::class, MakeEvent::class],
+                    MakeEventListener::class => [MakerCommandFactory::class, MakeEventListener::class],
+                    MakeFactory::class => [MakerCommandFactory::class, MakeFactory::class],
+                    MakeMiddleware::class => [MakerCommandFactory::class, MakeMiddleware::class],
+                    MakeRequestHandler::class => [MakerCommandFactory::class, MakeRequestHandler::class],
+                    ShowContainer::class => ShowContainerCommandFactory::class,
+                    SetDevelopmentMode::class => SetDevelopmentModeCommandFactory::class,
                 ],
             ],
         ];
