@@ -17,7 +17,6 @@ class GetRealPathFromNamespace
 {
     public const MAXIMUM_DEPTH_MESSAGE =
         'Given class name %s exceeded maximum path depth, probably given namespace is not defined';
-    public const NOT_AUTOLOAD_MESSAGE = 'Your autoload stack is not activated';
     private GetClassNameFromFQCN $getClassNameFromFQCN;
     private GetNamespaceFromFQCN $getNamespaceFromFQCN;
 
@@ -34,10 +33,8 @@ class GetRealPathFromNamespace
         $classDir = null;
         $parts = '';
         $initialNamespace = $namespace;
+        /** @var array $autoloadFunctions */
         $autoloadFunctions = spl_autoload_functions();
-        if (!is_array($autoloadFunctions)) {
-            throw new \RuntimeException(self::NOT_AUTOLOAD_MESSAGE);
-        }
         foreach ($autoloadFunctions as $autoloader) {
             if (false === is_array($autoloader)) {
                 continue;
