@@ -47,9 +47,9 @@ class %s extends Command
 ';
     protected const SUCCESS_HELP_TEMPLATE = '<comment>
 To activate the newly created Command you must register it in the configuration. (This examples are valid for Antidot'
-    . ' Framework and Zend expressive Framework)
+    . ' Framework)
 
-PHP style config (Zend Expressive, Antidot Framework)
+PHP style config (Antidot Framework)
 
 =====================================
 
@@ -69,7 +69,7 @@ return [
 
 ======================================
 
-YAML style config (Zend Expressive, Antidot Framework)
+YAML style config (Antidot Framework)
 
 ======================================
 
