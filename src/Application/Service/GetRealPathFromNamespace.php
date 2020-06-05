@@ -15,10 +15,11 @@ use function sprintf;
 
 class GetRealPathFromNamespace
 {
-    /** @var GetClassNameFromFQCN */
-    private $getClassNameFromFQCN;
-    /** @var GetNamespaceFromFQCN */
-    private $getNamespaceFromFQCN;
+    public const MAXIMUM_DEPTH_MESSAGE =
+        'Given class name %s exceeded maximum path depth, probably given namespace is not defined';
+    public const NOT_AUTOLOAD_MESSAGE = 'Your autoload stack is not activated';
+    private GetClassNameFromFQCN $getClassNameFromFQCN;
+    private GetNamespaceFromFQCN $getNamespaceFromFQCN;
 
     public function __construct(
         GetClassNameFromFQCN $getClassNameFromFQCN,
@@ -32,14 +33,15 @@ class GetRealPathFromNamespace
     {
         $classDir = null;
         $parts = '';
-        $getClassNameFromFQCN = $this->getClassNameFromFQCN;
-        $getNamespaceFromFQCN = $this->getNamespaceFromFQCN;
         $initialNamespace = $namespace;
         $autoloadFunctions = spl_autoload_functions();
         if (!is_array($autoloadFunctions)) {
-            throw new \RuntimeException('Your autoload stack is not activated');
+            throw new \RuntimeException(self::NOT_AUTOLOAD_MESSAGE);
         }
         foreach ($autoloadFunctions as $autoloader) {
+            if (false === is_array($autoloader)) {
+                continue;
+            }
             /** @var ClassLoader $classLoader */
             $classLoader = $autoloader[0];
             $depth = 0;
@@ -47,26 +49,20 @@ class GetRealPathFromNamespace
                 if (array_key_exists($namespace . "\\", $classLoader->getPrefixesPsr4())) {
                     $classDir = $classLoader->getPrefixesPsr4()[$namespace . "\\"][0];
                 } else {
-                    $parts = DIRECTORY_SEPARATOR . $getClassNameFromFQCN($namespace) . $parts;
-                    $namespace = $getNamespaceFromFQCN($namespace);
+                    $parts = DIRECTORY_SEPARATOR . $this->getClassNameFromFQCN->__invoke($namespace) . $parts;
+                    $namespace = $this->getNamespaceFromFQCN->__invoke($namespace);
                 }
                 if (10 <= $depth) {
-                    throw new InvalidArgumentException(sprintf(
-                        'Invalid Class name given, the namespace %s is not in autoloader configured namespaces',
-                        $initialNamespace
-                    ));
+                    throw new InvalidArgumentException(sprintf(self::MAXIMUM_DEPTH_MESSAGE, $initialNamespace));
                 }
                 $depth++;
             }
         }
 
         if (false === is_string($classDir)) {
-            throw new InvalidArgumentException(sprintf(
-                'Invalid Class name given, the namespace %s is not in autoloader configured namespaces',
-                $initialNamespace
-            ));
+            throw new InvalidArgumentException(sprintf(self::MAXIMUM_DEPTH_MESSAGE, $initialNamespace));
         }
 
-        return $classDir . $parts;
+        return sprintf('%s%s', $classDir, $parts);
     }
 }
