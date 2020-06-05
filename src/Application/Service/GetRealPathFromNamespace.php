@@ -56,10 +56,6 @@ class GetRealPathFromNamespace
             }
         }
 
-        if (false === is_string($classDir)) {
-            throw new InvalidArgumentException(sprintf(self::MAXIMUM_DEPTH_MESSAGE, $initialNamespace));
-        }
-
         return sprintf('%s%s', $classDir, $parts);
     }
 }
