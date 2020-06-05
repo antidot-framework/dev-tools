@@ -26,7 +26,7 @@ namespace %s;
 
 class %s
 {
-    public function __invoke(%s $event): void
+    public function __invoke(\\%s $event): void
     {
         // do something with the event
     }
