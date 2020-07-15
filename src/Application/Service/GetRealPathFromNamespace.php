@@ -33,7 +33,7 @@ class GetRealPathFromNamespace
         $classDir = null;
         $parts = '';
         $initialNamespace = $namespace;
-        /** @var array $autoloadFunctions */
+        /** @var array<mixed> $autoloadFunctions */
         $autoloadFunctions = spl_autoload_functions();
         foreach ($autoloadFunctions as $autoloader) {
             if (false === is_array($autoloader)) {

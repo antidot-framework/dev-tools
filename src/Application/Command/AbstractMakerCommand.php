@@ -31,8 +31,12 @@ abstract class AbstractMakerCommand extends Command
     protected GetNamespaceFromFQCN $getNamespaceFromFQCN;
     protected GetRealPathFromNamespace $getRealPathFromNamespace;
     protected CreateClassFile $createClassFile;
+    /** @var array<mixed>  */
     protected array $config;
 
+    /**
+     * @param array<mixed> $config
+     */
     public function __construct(
         GetClassNameFromFQCN $getClassNameFromFQCN,
         GetNamespaceFromFQCN $getNamespaceFromFQCN,

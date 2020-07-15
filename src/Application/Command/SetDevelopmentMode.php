@@ -27,8 +27,12 @@ class SetDevelopmentMode extends Command
         false,
         'false'
     ];
+    /** @var array<mixed>  */
     private array $config;
 
+    /**
+     * @param array<mixed> $config
+     */
     public function __construct(array $config)
     {
         parent::__construct();
@@ -60,6 +64,9 @@ class SetDevelopmentMode extends Command
         return 0;
     }
 
+    /**
+     * @param mixed $getOption
+     */
     private function disableDevelopmentModeInputFormatter($getOption): bool
     {
         if (in_array($getOption, self::TRUE_OPTIONS, true)) {
