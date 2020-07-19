@@ -11,8 +11,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 class ClearConfigCache extends Command
 {
     public const NAME = 'config:clear-cache';
+    /** @var array<mixed>  */
     private array $config;
 
+    /**
+     * @param array<mixed> $config
+     */
     public function __construct(array $config)
     {
         parent::__construct();

@@ -13,8 +13,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class ShowContainer extends Command
 {
     public const NAME = 'config:show:container';
+    /** @var array<mixed>  */
     private array $config;
 
+    /**
+     * @param array<mixed> $config
+     */
     public function __construct(array $config)
     {
         parent::__construct();
