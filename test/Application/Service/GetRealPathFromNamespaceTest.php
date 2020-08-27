@@ -22,7 +22,7 @@ class GetRealPathFromNamespaceTest extends TestCase
 
     private GetRealPathFromNamespace $getRealPathFromNamespace;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->getRealPathFromNamespace = new GetRealPathFromNamespace(
             new GetClassNameFromFQCN(self::class),
