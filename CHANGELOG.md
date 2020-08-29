@@ -1,8 +1,20 @@
 # Changelog
 
-## [0.1.3](https://github.com/antidot-framework/dev-tools/tree/HEAD)
+## [0.1.4](https://github.com/antidot-framework/dev-tools/tree/0.1.4)
 
-[Full Changelog](https://github.com/antidot-framework/dev-tools/compare/0.1.2...HEAD)
+[Full Changelog](https://github.com/antidot-framework/dev-tools/compare/0.1.3...0.1.4)
+
+**Merged pull requests:**
+
+- update phpunit configuration format [\#16](https://github.com/antidot-framework/dev-tools/pull/16) ([kpicaza](https://github.com/kpicaza))
+- Add CreateClassFile class test [\#15](https://github.com/antidot-framework/dev-tools/pull/15) ([peter279k](https://github.com/peter279k))
+- build\(deps-dev\): update phpro/grumphp requirement from ^0.15.0 || ^0.19.0 to ^0.15.0 || ^0.19.0 || ^0.21.0 [\#14](https://github.com/antidot-framework/dev-tools/pull/14) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Improve PHPUnit fixtures [\#13](https://github.com/antidot-framework/dev-tools/pull/13) ([peter279k](https://github.com/peter279k))
+- build\(deps\): update symfony/console requirement from ^4.2 to ^4.2 || ^5.0 [\#11](https://github.com/antidot-framework/dev-tools/pull/11) ([dependabot[bot]](https://github.com/apps/dependabot))
+
+## [0.1.3](https://github.com/antidot-framework/dev-tools/tree/0.1.3) (2020-07-19)
+
+[Full Changelog](https://github.com/antidot-framework/dev-tools/compare/0.1.2...0.1.3)
 
 **Merged pull requests:**
 
