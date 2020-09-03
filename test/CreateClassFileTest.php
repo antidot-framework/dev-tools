@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace AntidotTest\DevTools\Application\Service;
+namespace AntidotTest\DevTools;
 
 use Antidot\DevTools\Application\Service\CreateClassFile;
 use org\bovigo\vfs\vfsStream;
