@@ -38,7 +38,10 @@ final class ShowContainer extends Command
         $table->setHeaders(['service', 'implementation']);
         $table->addRow(['<info>Services</info>']);
         $table->addRow(new TableSeparator());
-        $services = $this->config['services'] ?? [];
+        $services = array_replace_recursive(
+            $this->config['services'] ?? [],
+            $this->config['dependencies']['invokables'] ?? []
+        );
         foreach ($services as $key => $service) {
             if (is_string($service)) {
                 $table->addRow([$key, $service]);
@@ -55,8 +58,15 @@ final class ShowContainer extends Command
         $table->addRow(new TableSeparator());
         $table->addRow(['<info>Factories</info>']);
         $table->addRow(new TableSeparator());
-        $factories = $this->config['factories'] ?? [];
+        $factories = array_replace_recursive(
+            $this->config['factories'] ?? [],
+            $this->config['dependencies']['factories'] ?? []
+        );
         foreach ($factories as $key => $factory) {
+            if (is_callable($factory)) {
+                $table->addRow([$key, 'Anonymous function']);
+                continue;
+            }
             $table->addRow([$key, is_array($factory) ? $factory[0].'::'.$factory[1] : $factory]);
         }
 
