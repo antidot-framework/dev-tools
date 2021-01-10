@@ -1,6 +1,18 @@
 # Changelog
 
-## [0.1.5](https://github.com/antidot-framework/dev-tools/tree/0.1.5)
+## [0.1.6](https://github.com/antidot-framework/dev-tools/tree/0.1.6) (2021-01-10)
+
+[Full Changelog](https://github.com/antidot-framework/dev-tools/compare/0.1.5...0.1.6)
+
+**Implemented enhancements:**
+
+- add php8 support [\#23](https://github.com/antidot-framework/dev-tools/pull/23) ([kpicaza](https://github.com/kpicaza))
+
+**Merged pull requests:**
+
+- build\(deps-dev\): update phpro/grumphp requirement from ~0.17 to ~0.17 || ~1.0 [\#22](https://github.com/antidot-framework/dev-tools/pull/22) ([dependabot[bot]](https://github.com/apps/dependabot))
+
+## [0.1.5](https://github.com/antidot-framework/dev-tools/tree/0.1.5) (2020-09-07)
 
 [Full Changelog](https://github.com/antidot-framework/dev-tools/compare/0.1.4...0.1.5)
 
@@ -19,6 +31,10 @@
 
 [Full Changelog](https://github.com/antidot-framework/dev-tools/compare/0.1.3...0.1.4)
 
+**Implemented enhancements:**
+
+- Add set development mode command [\#2](https://github.com/antidot-framework/dev-tools/pull/2) ([kpicaza](https://github.com/kpicaza))
+
 **Merged pull requests:**
 
 - update phpunit configuration format [\#16](https://github.com/antidot-framework/dev-tools/pull/16) ([kpicaza](https://github.com/kpicaza))
@@ -35,6 +51,7 @@
 
 - build\(deps-dev\): update phpunit/phpunit requirement from ^8.0 to ^8.0 || ^9.0 [\#10](https://github.com/antidot-framework/dev-tools/pull/10) ([dependabot[bot]](https://github.com/apps/dependabot))
 - build\(deps-dev\): update symfony/var-dumper requirement from ^4.2 to ^4.2 || ^5.0 [\#9](https://github.com/antidot-framework/dev-tools/pull/9) ([dependabot[bot]](https://github.com/apps/dependabot))
+- build\(deps-dev\): update phpro/grumphp requirement from ^0.15.0 to ^0.15.0 || ^0.19.0 [\#8](https://github.com/antidot-framework/dev-tools/pull/8) ([dependabot[bot]](https://github.com/apps/dependabot))
 - build\(deps-dev\): update phpstan/phpstan requirement from ^0.11.5 to ^0.11.5 || ^0.12.0 [\#7](https://github.com/antidot-framework/dev-tools/pull/7) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [0.1.2](https://github.com/antidot-framework/dev-tools/tree/0.1.2) (2020-06-05)
@@ -61,15 +78,10 @@
 
 - Create boilerplate code maker commands [\#3](https://github.com/antidot-framework/dev-tools/issues/3)
 - Issue/\#3: create boilerplate code maker commands [\#4](https://github.com/antidot-framework/dev-tools/pull/4) ([kpicaza](https://github.com/kpicaza))
-- Add set development mode command [\#2](https://github.com/antidot-framework/dev-tools/pull/2) ([kpicaza](https://github.com/kpicaza))
 
 **Closed issues:**
 
 - Add set development mode command [\#1](https://github.com/antidot-framework/dev-tools/issues/1)
-
-**Merged pull requests:**
-
-- build\(deps-dev\): update phpro/grumphp requirement from ^0.15.0 to ^0.15.0 || ^0.19.0 [\#8](https://github.com/antidot-framework/dev-tools/pull/8) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 
 
