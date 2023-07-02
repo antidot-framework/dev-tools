@@ -1,1 +1,1 @@
-<?php class ExistedClass{}
+<?php class Test{}

@@ -9,6 +9,7 @@ use Antidot\DevTools\Application\Service\GetClassNameFromFQCN;
 use Antidot\DevTools\Application\Service\GetNamespaceFromFQCN;
 use Antidot\DevTools\Application\Service\GetRealPathFromNamespace;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -107,6 +108,7 @@ abstract class AbstractMakerCommand extends Command
     {
         $fqcn = $input->getArgument('fqcn');
         if (null === $fqcn) {
+            /** @var QuestionHelper $questionHelper */
             $questionHelper = $this->getHelper('question');
             $question = new Question(
                 static::QUESTION,

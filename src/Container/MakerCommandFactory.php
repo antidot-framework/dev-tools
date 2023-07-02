@@ -33,6 +33,7 @@ class MakerCommandFactory
         MakeMiddleware::class,
     ];
 
+    /** @param class-string<AbstractMakerCommand> $makerName */
     public function __invoke(ContainerInterface $container, string $makerName): AbstractMakerCommand
     {
         $this->assertValidMaker($makerName);
