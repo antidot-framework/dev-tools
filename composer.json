@@ -12,17 +12,19 @@
         }
     ],
     "require": {
-        "php": "^7.4.0|^8.0",
-        "psr/container": "^1.0.0",
-        "symfony/console": "^4.2 || ^5.0"
+        "php": "~8.1.0 || ~8.2.0",
+        "psr/container": "^2.0",
+        "symfony/console": "^5.0 || ^6.0"
     },
     "require-dev": {
-        "phpro/grumphp": "~0.17 || ~1.0",
-        "phpstan/phpstan": "^0.11.5 || ^0.12.0",
-        "phpunit/phpunit": "^8.0 || ^9.0",
-        "squizlabs/php_codesniffer": "^3.4",
-        "symfony/var-dumper": "^4.2 || ^5.0",
-        "mikey179/vfsstream": "^1.6"
+        "mikey179/vfsstream": "^1.6",
+        "phpro/grumphp": "~1.0",
+        "phpstan/phpstan": "^1.10",
+        "phpunit/phpunit": "^9.0",
+        "roave/infection-static-analysis-plugin": "^1.32",
+        "squizlabs/php_codesniffer": "^3.5",
+        "symfony/var-dumper": "^5.0 || ^6.0",
+        "vimeo/psalm": "^5.13"
     },
     "autoload": {
         "psr-4": {
@@ -38,14 +40,22 @@
         "check-all": [
             "@cs-check",
             "@test",
-            "@inspect"
+            "@inspect",
+            "@psalm",
+            "@infection"
         ],
         "cs-check": "phpcs src --colors",
         "cs-fix": "phpcbf src --colors",
         "inspect": "phpstan analyse src -l7 --ansi",
+        "psalm": "psalm",
+        "infection": "XDEBUG_MODE=coverage roave-infection-static-analysis-plugin",
         "test": "phpunit --colors=always"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpro/grumphp": true,
+            "infection/extension-installer": true
+        }
     }
 }

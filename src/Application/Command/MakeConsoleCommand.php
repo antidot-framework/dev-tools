@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Antidot\DevTools\Application\Command;
 
+use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -151,6 +152,7 @@ services:
     {
         $commandName = $input->getArgument('command-name');
         if (null === $commandName) {
+            /** @var QuestionHelper $questionHelper */
             $questionHelper = $this->getHelper('question');
             $question = new Question(
                 '<fg=blue>Please enter the name of the command <info>[app:my:command]</info>: </>',

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Antidot\DevTools\Application\Command;
 
+use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -139,6 +140,7 @@ services:
     {
         $eventName = $input->getArgument('event-name');
         if (null === $eventName) {
+            /** @var QuestionHelper $questionHelper */
             $questionHelper = $this->getHelper('question');
             $question = new Question(
                 '<fg=blue>Please enter the name of the evnt class <info>[App\My\EventName]</info>: </>',

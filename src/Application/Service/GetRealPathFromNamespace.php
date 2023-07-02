@@ -30,7 +30,7 @@ class GetRealPathFromNamespace
 
     public function __invoke(string $namespace): string
     {
-        $classDir = null;
+        $classDir = '';
         $parts = '';
         $initialNamespace = $namespace;
         /** @var array<mixed> $autoloadFunctions */
@@ -42,7 +42,7 @@ class GetRealPathFromNamespace
             /** @var ClassLoader $classLoader */
             $classLoader = $autoloader[0];
             $depth = 0;
-            while (null === $classDir) {
+            while ('' === $classDir) {
                 if (array_key_exists($namespace . "\\", $classLoader->getPrefixesPsr4())) {
                     $classDir = $classLoader->getPrefixesPsr4()[$namespace . "\\"][0];
                 } else {
